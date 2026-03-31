@@ -407,7 +407,7 @@
         <canvas id="mc-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.5;"></canvas>
         <div class="login-tagline" style="position:relative;z-index:1;">THERAPY GAME</div>
         <div style="display:flex;gap:8px;margin-top:8px;position:relative;z-index:1;">
-            <span class="badge badge-yellow">15 Min Session</span>
+            <span class="badge badge-yellow">10 Sec Session</span>
         </div>
     </div>
 
@@ -415,7 +415,7 @@
         <div class="instr-title">⚠️ Before You Start</div>
         <div class="instr-step"><div class="instr-num">1</div><div class="instr-text">Put on your <strong>Red-Cyan 3D Glasses</strong>.</div></div>
         <div class="instr-step"><div class="instr-num">2</div><div class="instr-text">Set your device brightness to <strong>Maximum ☀️</strong></div></div>
-        <div class="instr-step" style="margin-bottom:0;"><div class="instr-num">3</div><div class="instr-text">Complete the full <strong>15-minute</strong> session.</div></div>
+        <div class="instr-step" style="margin-bottom:0;"><div class="instr-num">3</div><div class="instr-text">Complete the full <strong>10-second</strong> session.</div></div>
     </div>
 
     <div style="width:100%;">
@@ -527,7 +527,7 @@
     <span class="text-link" onclick="SFX.bleep(); gotoSetup()">⚙️ Re-Calibrate Setup</span>
 
     <div style="width:100%; margin-top:4px;">
-        <button id="btnEndSession" class="btn-end" onclick="submitSession()" disabled>🔒 End Session (Wait 15 min)</button>
+        <button id="btnEndSession" class="btn-end" onclick="submitSession()" disabled>🔒 End Session (Wait 10 sec)</button>
     </div>
 </div>
 
@@ -641,7 +641,6 @@
     </div>
 </div>
 
-<!-- ===== DIFFICULTY BOTTOM SHEET ===== -->
 <div id="diff-sheet-backdrop" onclick="diffSheetClose(event)">
     <div id="diff-sheet">
         <div class="diff-sheet-handle"></div>
@@ -703,7 +702,6 @@
     </div>
 </div>
 
-<!-- ===== COMPLIANCE CHECK OVERLAY ===== -->
 <div id="compliance-overlay">
     <div class="co-badge">⏸ Compliance Check</div>
     <div class="co-title">PRESS THIS ARROW</div>
@@ -716,11 +714,9 @@
     <div class="co-instruction" id="co-instruction">PRESS ▲ TO CONTINUE</div>
 
     <div class="co-dpad">
-        <!-- Row 1 -->
         <div></div>
         <div class="co-key" id="cok-up"    ontouchstart="coPress('UP',event)"    onmousedown="coPress('UP',event)">▲</div>
         <div></div>
-        <!-- Row 2 -->
         <div class="co-key" id="cok-left"  ontouchstart="coPress('LEFT',event)"  onmousedown="coPress('LEFT',event)">◄</div>
         <div class="co-key" id="cok-down"  ontouchstart="coPress('DOWN',event)"  onmousedown="coPress('DOWN',event)">▼</div>
         <div class="co-key" id="cok-right" ontouchstart="coPress('RIGHT',event)" onmousedown="coPress('RIGHT',event)">►</div>
@@ -1011,8 +1007,8 @@
 
 
     // ===== CONFIG & STATE =====
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBvr4PkDMJu7TjwzZHKFE1g2IrP2JYQx1igeTj8et_y6kRZA1dnxIu9ZwVJx1WzueT/exec';
-    const TARGET_SECONDS = 900;
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyB_XJS8cVJkMGYsXyi2uCFjKCnnRN3L_FdPjZm28yfvq7oANQTq9o3W83dv0tE5Khy/exec';
+    const TARGET_SECONDS = 10;
     let sessionStartTime = "";
     let isTestMode = false; 
 
