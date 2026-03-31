@@ -1007,7 +1007,7 @@
 
 
     // ===== CONFIG & STATE =====
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyB_XJS8cVJkMGYsXyi2uCFjKCnnRN3L_FdPjZm28yfvq7oANQTq9o3W83dv0tE5Khy/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyptYaf2n86pgLFxUhs1WJX2qUbhxAVnZE6AqTI4WEKb7qod6Cq2lN56B2TqaWX-mei/exec';
     const TARGET_SECONDS = 10;
     let sessionStartTime = "";
     let isTestMode = false; 
@@ -1313,10 +1313,34 @@
         if(!confirm("Submit session data?")) return;
         
         const btn = document.getElementById('btnEndSession'); btn.innerText = "Sending Data..."; btn.disabled = true;
-        const sessionDate = new Date().toLocaleDateString('en-CA'); const endTime = new Date().toLocaleTimeString('en-US', { hour12: false }); const durationMin = Math.floor(totalSeconds / 60);
-        const formData = new URLSearchParams({ pID: pID, pDate: sessionDate, startTime: sessionStartTime || endTime, endTime: endTime, duration: durationMin, status: "Completed" });
+        const sessionDate = new Date().toLocaleDateString('en-CA');
+        const endTime = new Date().toLocaleTimeString('en-US', { hour12: false });
+        const durationMin = Math.floor(totalSeconds / 60);
 
-        fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData }).then(() => { alert("Data successfully saved to Google Sheets!"); location.reload(); }).catch(err => { alert("Error: " + err); btn.innerText = "Try Again"; btn.disabled = false; });
+        const payload = JSON.stringify({
+            pID: pID,
+            pDate: sessionDate,
+            startTime: sessionStartTime || endTime,
+            endTime: endTime,
+            duration: durationMin,
+            status: "Completed"
+        });
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: payload
+        })
+        .then(() => {
+            alert("✅ Data berjaya dihantar ke Google Sheets!");
+            location.reload();
+        })
+        .catch(err => {
+            alert("❌ Error: " + err);
+            btn.innerText = "Try Again";
+            btn.disabled = false;
+        });
     }
 
     let gamePausedForOverlay = false;
